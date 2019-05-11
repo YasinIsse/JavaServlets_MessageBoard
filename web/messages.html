@@ -1,0 +1,102 @@
+<html>
+<head>
+    <title>Message Board</title>
+    <p style="font-weight: bold; font-size:50px;;">Message Boards</p>
+    <p>Please Select Your Message Board</p>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onLoad="refresh();">
+<script>
+
+
+    function upload() {
+
+        var data;
+        data = document.getElementById("newpost").value;
+
+        document.getElementById("newpost").value = "";
+
+        var board;
+        board = document.getElementById("boards").value;
+        if (board == "B1") {
+            loadPage("POST", "http://localhost:8080/messages/board4?DATA=" + data);
+        }
+        if (board == "B2") {
+            loadPage("POST", "http://localhost:8080/messages/board2?DATA=" + data);
+        }
+        if (board == "B3") {
+            loadPage("POST", "http://localhost:8080/messages/board3?DATA=" + data);
+        }
+    }
+
+    function refresh() {
+        loadPage2("GET", "http://localhost:8080/messages/menue");
+
+    }
+
+    function refresh2() {
+        var data;
+        data = document.getElementById("boards").value;
+        document.getElementById("posts").value = "";
+        if (data == "B1") {
+            loadPage("GET", "http://localhost:8080/messages/board4");
+        }
+        if (data == "B2") {
+            loadPage("GET", "http://localhost:8080/messages/board2");
+        }
+        if (data == "B3") {
+            loadPage("GET", "http://localhost:8080/messages/board3");
+        }
+
+    }
+
+
+    function loadPage(Method, URL) {
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("posts").value = this.responseText;
+            }
+        };
+        xhttp.open(Method, URL, true);
+        xhttp.send();
+    }
+
+
+    function loadPage2(Method, URL) {
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("boards").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open(Method, URL, true);
+        xhttp.send();
+    }
+
+
+</script>
+
+<select id="boards"> </select>
+
+<button onclick="refresh2()"> SELECT</button>
+
+
+<p></p>
+
+<textarea id="posts" cols="80" rows="20">  </textarea>
+<p></p>
+<p></p>
+
+<textarea id="newpost" cols="80" rows="1">  </textarea>
+<p></p>
+<p></p>
+
+<button onclick="upload()"> POST</button>
+
+
+</body>
+</html>

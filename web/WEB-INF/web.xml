@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <servlet>
+        <servlet-name>board</servlet-name>
+        <servlet-class>board</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>board</servlet-name>
+        <url-pattern>/messageboard/board</url-pattern>
+        <url-pattern>/board</url-pattern>
+
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>board2</servlet-name>
+        <servlet-class>board2</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>board2</servlet-name>
+        <url-pattern>/messages/board2</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>board3</servlet-name>
+        <servlet-class>board3</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>board3</servlet-name>
+        <url-pattern>/messages/board3</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>board4</servlet-name>
+        <servlet-class>board4</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>board4</servlet-name>
+        <url-pattern>/messages/board4</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>menue</servlet-name>
+        <servlet-class>menue</servlet-class>
+
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>menue</servlet-name>
+        <url-pattern>/menue</url-pattern>
+        <url-pattern>/messages/menue</url-pattern>
+
+    </servlet-mapping>
+
+
+</web-app>

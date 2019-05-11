@@ -1,0 +1,74 @@
+<html>
+<head>
+    <title>Message Board</title>
+    <p style="font-weight: bold; font-size:50px;;">Message Boards</p>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onLoad="refresh();">
+<script>
+
+    arrList = [];
+
+    function upload() {
+        var text_to_save = document.getElementById('newboard').value;
+        var n = arrList.includes(text_to_save);
+        if (n == true) {
+            document.getElementById('newboard').value = "Already Exists";
+        }
+        else {
+            document.getElementById('newboard').value = "";
+            arrList.push(text_to_save); // save the item
+            arrList.sort();
+            var i;
+            for (i = 0; i < arrList.length; i++) {
+                loadPage("POST", "http://localhost:8080/messageboard/board?DATA=" + arrList[i]);
+            }
+            // var i;
+            // for (i=0; i< arrList.length;i++) {
+            //     loadPage("POST", "http://localhost:8080/messageboard/board?DATA=" + arrList[i]);
+            // }
+
+
+        }
+
+    }
+
+
+    function refresh() {
+        loadPage("GET", "http://localhost:8080/messageboard/board");
+        setTimeout('refresh()', 3);
+
+
+    }
+
+
+    function loadPage(Method, URL) {
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("board").value = this.responseText;
+            }
+        };
+        xhttp.open(Method, URL, true);
+        xhttp.send();
+    }
+
+
+</script>
+<p></p>
+
+<textarea id="board" cols="80" rows="30">  </textarea>
+
+<p></p>
+
+<textarea id="newboard" cols="80" rows="1">  </textarea>
+<p></p>
+
+<button onclick="upload()"> SUBMIT</button>
+
+<p></p>
+
+</body>
+</html>
